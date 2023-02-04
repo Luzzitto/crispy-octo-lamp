@@ -14,4 +14,10 @@ def extract_thumb(file_path, folder_dest):
                 with open(folder_dest + img_name + ".jpg", "wb") as f:
                     f.write(thumb.data)
 
-extract_thumb(str(sys.argv[1]), str(sys.argv[2]))
+if __name__ == "__main__":
+    source_folder = sys.argv[1]
+    destination_folder = sys.argv[2]
+
+    for filename in os.listdir(source_folder):
+        src_file = os.path.join(source_folder, filename)
+        print(src_file)
