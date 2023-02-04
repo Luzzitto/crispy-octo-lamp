@@ -1,6 +1,7 @@
 import rawpy
 import os
 import sys
+from tqdm import tqdm
 
 def extract_thumb(file_path, folder_dest):
     img_name, img_ext = os.path.splitext(os.path.basename(file_path))
@@ -8,7 +9,7 @@ def extract_thumb(file_path, folder_dest):
         try:
             thumb = raw.extract_thumb()
         except rawpy.LibRawNoThumbnailError:
-            print("No thumbnail found")
+            tqdm.write("No thumbnail found")
         else:
             if thumb.format == rawpy.ThumbFormat.JPEG:
                 with open(folder_dest + img_name + ".jpg", "wb") as f:
@@ -18,6 +19,9 @@ if __name__ == "__main__":
     source_folder = sys.argv[1]
     destination_folder = sys.argv[2]
 
-    for filename in os.listdir(source_folder):
+    for filename in tqdm.tqdm(os.listdir(source_folder), desc="dirs"):
         src_file = os.path.join(source_folder, filename)
-        print(src_file)
+        if os.path.splitext(filename)[1] != ".CR3":
+            continue
+        
+        extract_thumb(src_file, destination_folder)
