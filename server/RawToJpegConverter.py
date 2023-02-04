@@ -3,7 +3,7 @@ import os
 import sys
 
 def extract_thumb(file_path, folder_dest):
-    img_name, img_ext = os.path.splitext(file_path)
+    img_name, img_ext = os.path.splitext(os.path.basename(file_path))
     with rawpy.imread(file_path) as raw:
         try:
             thumb = raw.extract_thumb()
