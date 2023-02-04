@@ -18,10 +18,13 @@ def extract_thumb(file_path, folder_dest):
 if __name__ == "__main__":
     source_folder = sys.argv[1]
     destination_folder = sys.argv[2]
+    counter = 0
 
     for filename in tqdm(os.listdir(source_folder), desc="dirs"):
         src_file = os.path.join(source_folder, filename)
         if os.path.splitext(filename)[1] != ".CR3":
             continue
-        
+        counter += 1
         extract_thumb(src_file, destination_folder)
+
+    print(f"Files completed: {counter}")
