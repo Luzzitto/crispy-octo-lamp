@@ -14,4 +14,4 @@ def extract_thumb(file_path, folder_dest):
                 with open(folder_dest + img_name + ".jpg", "wb") as f:
                     f.write(thumb.data)
 
-extract_thumb(sys.argv[1], sys.argv[2])
+extract_thumb(str(sys.argv[1]), str(sys.argv[2]))
