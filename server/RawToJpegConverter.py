@@ -19,7 +19,7 @@ if __name__ == "__main__":
     source_folder = sys.argv[1]
     destination_folder = sys.argv[2]
 
-    for filename in tqdm.tqdm(os.listdir(source_folder), desc="dirs"):
+    for filename in tqdm(os.listdir(source_folder), desc="dirs"):
         src_file = os.path.join(source_folder, filename)
         if os.path.splitext(filename)[1] != ".CR3":
             continue
