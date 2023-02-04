@@ -19,7 +19,7 @@ class RawToJpegConverter:
                 break
             raw_file = Path(self.source_path) / filename
             jpeg_file = Path(self.dest_path) / raw_file.with_suffix('.jpg').name
-            with rawpy.imread(raw_file) as raw:
+            with rawpy.imread(str(raw_file)) as raw:
                 try:
                     thumb = raw.extract_thumb()
                 except rawpy.LibRawNoThumbnailError:
