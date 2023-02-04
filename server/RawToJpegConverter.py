@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     for filename in os.listdir(args.source_path):
         raw_file = Path(args.source_path) / filename
-        jpeg_file = Path(args.source_path) / filename.with_suffix('.JPG')
+        jpeg_file = Path(args.source_path) / raw_file.with_suffix('.JPG').name
         if jpeg_file.is_file() and raw_file.is_file():
             shutil.copy2(jpeg_file, Path(args.dest_path) / filename)
 
